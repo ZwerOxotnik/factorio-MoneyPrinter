@@ -1,6 +1,6 @@
 {
 	"name": "MoneyPrinter",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"factorio_version": "1.1",
 	"title": "Money printer (extension for EasyAPI)",
 	"author": "ZwerOxotnik",
@@ -9,6 +9,6 @@
 	"description": "see locale/*",
 	"dependencies": [
 		"base",
-		"? EasyAPI"
+		"EasyAPI"
 	]
 }
