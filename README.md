@@ -55,11 +55,6 @@ Craft coins.
   <a href="https://mods.factorio.com/mod/MoneyPrinter/downloads"><strong>Download the mod&nbsp;&nbsp;▶</strong></a>
 </p>
 
-Dependencies
-------------
-
-* <a href="github.com/ZwerOxotnik/zk-lib" target="_blank"><code>zk-lib</code></a> - for localization of [BetterCommands](models/BetterCommands/control.lua), currently
-
 ‼️ Important Links (Translations, Discord Support)
 ---------------------------------------------------------------
 

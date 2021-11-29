@@ -1,15 +1,35 @@
+if mods["EasyAPI"] == nil then
+	data:extend({
+		{
+			type = "item-group",
+			name = "money",
+			order = "z",
+			icon = "__base__/graphics/icons/coin.png",
+			icon_size = 64, icon_mipmaps = 4,
+		}, {
+			type = "item-subgroup",
+			name = "coins",
+			group = "money",
+			order = "a"
+		}, {
+			type = "recipe-category",
+			name = "money"
+		}
+	})
+end
+
 local function create_recipe(count)
 	data:extend({{
-			type = "recipe",
-			name = "copper-coin-" .. count,
-			subgroup = "coins",
-			category = "money",
-			enabled = true,
-			ingredients = {{"copper-plate", count}},
-			energy_required = count,
-			order = "coin-" .. count,
-			result = "coin",
-			result_count = count
+		type = "recipe",
+		name = "copper-coin-" .. count,
+		subgroup = "coins",
+		category = "money",
+		enabled = true,
+		ingredients = {{"copper-plate", count}},
+		energy_required = count,
+		order = "coin-" .. count,
+		result = "coin",
+		result_count = count
 	}})
 end
 
@@ -32,6 +52,7 @@ local money_printer_recipe = table.deepcopy(data.raw.recipe["assembling-machine-
 money_printer_recipe.name = money_printer.name
 money_printer_recipe.result = money_printer.name
 money_printer_recipe.enabled = true
+
 data:extend({
 	money_printer_recipe,
 	money_printer, {
