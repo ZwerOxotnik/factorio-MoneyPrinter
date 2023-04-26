@@ -3,26 +3,27 @@ MoneyPrinter = {
 }
 
 
----@param count integer # 1 by default
+---@param required_count integer # 1 by default
 ---@param required_item_name string
 ---@param result_item_name string? # "coin" by default
+---@param result_count integer # 1 by default
 ---@param bottom_icon table?
 ---@param top_icon table?
-MoneyPrinter.create_recipe = function(count, required_item_name, result_item_name, bottom_icon, top_icon)
-	count = count or 1
+MoneyPrinter.create_recipe = function(required_count, required_item_name, result_item_name, result_count, bottom_icon, top_icon)
+	required_count = required_count or 1
 	result_item_name = result_item_name or "coin"
 
 	local data = {
 		type = "recipe",
-		name = required_item_name .. "-" .. result_item_name .. "-" .. count,
+		name = required_item_name .. "-" .. result_item_name .. "-" .. required_count,
 		subgroup = "coins",
 		category = "money",
 		enabled = true,
-		ingredients = {{required_item_name, count}},
-		energy_required = count,
-		order = result_item_name .. "-" .. count,
+		ingredients = {{required_item_name, required_count}},
+		energy_required = required_count,
+		order = result_item_name .. "-" .. required_count,
 		result = result_item_name,
-		result_count = count
+		result_count = result_count
 	}
 	if bottom_icon or top_icon then
 		if bottom_icon and top_icon then
