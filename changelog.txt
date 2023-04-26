@@ -1,4 +1,12 @@
 ﻿---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 2023-04-26
+  Scripting:
+    - Added MoneyPrinter in data.lua to manage recipes
+  Changes:
+    - Improved icons
+    - Uses zk-lib for data stability
+---------------------------------------------------------------------------------------------------
 Version: 0.1.4
 Date: 2022-11-06
   Changes:

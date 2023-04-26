@@ -1,3 +1,42 @@
+MoneyPrinter = {
+	allow_default_recipes = true
+}
+
+
+---@param count integer # 1 by default
+---@param required_item_name string
+---@param result_item_name string? # "coin" by default
+---@param bottom_icon table?
+---@param top_icon table?
+MoneyPrinter.create_recipe = function(count, required_item_name, result_item_name, bottom_icon, top_icon)
+	count = count or 1
+	result_item_name = result_item_name or "coin"
+
+	local data = {
+		type = "recipe",
+		name = required_item_name .. "-" .. result_item_name .. "-" .. count,
+		subgroup = "coins",
+		category = "money",
+		enabled = true,
+		ingredients = {{required_item_name, count}},
+		energy_required = count,
+		order = result_item_name .. "-" .. count,
+		result = result_item_name,
+		result_count = count
+	}
+	if bottom_icon or top_icon then
+		if bottom_icon and top_icon then
+			data.icons = {bottom_icon, top_icon}
+		else
+			data.icons = {bottom_icon or top_icon}
+		end
+	end
+
+	lazyAPI.add_prototype(data)
+end
+MoneyPrinter._create_recipe = MoneyPrinter.create_recipe
+
+
 if mods["EasyAPI"] == nil then
 	data:extend({
 		{
@@ -18,27 +57,8 @@ if mods["EasyAPI"] == nil then
 	})
 end
 
-local function create_recipe(count)
-	data:extend({{
-		type = "recipe",
-		name = "copper-coin-" .. count,
-		subgroup = "coins",
-		category = "money",
-		enabled = true,
-		ingredients = {{"copper-plate", count}},
-		energy_required = count,
-		order = "coin-" .. count,
-		result = "coin",
-		result_count = count
-	}})
-end
 
-create_recipe(100)
-create_recipe(1000)
-create_recipe(5000)
-
-
-local money_printer = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-1"])
+local money_printer = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-1"] or lazyAPI.vanilla_data["assembling-machine"]["assembling-machine-1"])
 money_printer.name = "money-printer"
 money_printer.minable = {mining_time = 0.2, result = money_printer.name}
 money_printer.fast_replaceable_group = nil
@@ -48,7 +68,7 @@ money_printer.next_upgrade = nil
 money_printer.crafting_speed = 1
 money_printer.base_productivity = 0
 money_printer.crafting_categories = {"money"}
-local money_printer_recipe = table.deepcopy(data.raw.recipe["assembling-machine-1"])
+local money_printer_recipe = table.deepcopy(data.raw.recipe["assembling-machine-1"] or lazyAPI.vanilla_data.recipe["assembling-machine-1"])
 money_printer_recipe.name = money_printer.name
 money_printer_recipe.result = money_printer.name
 money_printer_recipe.enabled = true
