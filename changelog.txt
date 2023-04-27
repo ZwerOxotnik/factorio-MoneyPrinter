@@ -1,4 +1,10 @@
 ﻿---------------------------------------------------------------------------------------------------
+Version: 0.2.2
+Date: 2023-04-27
+  Scripting:
+    - Changes MoneyPrinter.create_recipe in data.lua
+    - MoneyPrinter.create_recipe supports any subgroups
+---------------------------------------------------------------------------------------------------
 Version: 0.2.1
 Date: 2023-04-26
   Changes:

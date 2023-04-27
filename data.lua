@@ -3,20 +3,31 @@ MoneyPrinter = {
 }
 
 
+---@param subgroup string # "coin-for-item" by default
 ---@param required_count integer # 1 by default
 ---@param required_item_name string
 ---@param result_item_name string? # "coin" by default
 ---@param result_count integer # 1 by default
 ---@param bottom_icon table?
 ---@param top_icon table?
-MoneyPrinter.create_recipe = function(required_count, required_item_name, result_item_name, result_count, bottom_icon, top_icon)
+MoneyPrinter.create_recipe = (EasyAPI and EasyAPI.create_coin_conversion_recipe) or function(subgroup, required_count, required_item_name, result_item_name, result_count, bottom_icon, top_icon)
 	required_count = required_count or 1
 	result_item_name = result_item_name or "coin"
+	subgroup = subgroup or "coin-for-item"
+
+	if data.raw["item-subgroup"][subgroup] == nil then
+		lazyAPI.add_prototype({
+			type = "item-subgroup",
+			name = subgroup,
+			group = "money",
+			order = "a"
+		})
+	end
 
 	local data = {
 		type = "recipe",
 		name = required_item_name .. "-" .. result_item_name .. "-" .. required_count,
-		subgroup = "coins",
+		subgroup = subgroup,
 		category = "money",
 		enabled = true,
 		ingredients = {{required_item_name, required_count}},
@@ -27,9 +38,13 @@ MoneyPrinter.create_recipe = function(required_count, required_item_name, result
 	}
 	if bottom_icon or top_icon then
 		if bottom_icon and top_icon then
+			bottom_icon = table.deepcopy(bottom_icon)
+			top_icon = table.deepcopy(top_icon)
+			top_icon.scale = top_icon.scale or 0.35
 			data.icons = {bottom_icon, top_icon}
 		else
-			data.icons = {bottom_icon or top_icon}
+			local icon = table.deepcopy(bottom_icon or top_icon)
+			data.icons = {icon}
 		end
 	end
 
