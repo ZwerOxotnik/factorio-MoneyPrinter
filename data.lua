@@ -86,7 +86,7 @@ money_printer.base_productivity = 0
 money_printer.crafting_categories = {"money"}
 local money_printer_recipe = table.deepcopy(data.raw.recipe["assembling-machine-1"] or lazyAPI.vanilla_data.recipe["assembling-machine-1"])
 money_printer_recipe.name = money_printer.name
-money_printer_recipe.result = money_printer.name
+money_printer_recipe.results = {{type = "item", name = money_printer.name, amount = 1}}
 money_printer_recipe.enabled = true
 
 data:extend({

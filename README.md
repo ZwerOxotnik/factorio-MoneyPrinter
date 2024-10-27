@@ -65,7 +65,7 @@ Craft coins.
 If you want to download from this source, then use commands below (requires [git][git]).
 
 ```bash
-git clone --recurse-submodules -j8 https://github.com/ZwerOxotnik/factorio-MoneyPrinter
+git clone --recurse-submodules -j8 https://github.com/ZwerOxotnik/factorio-MoneyPrinter MoneyPrinter
 cd MoneyPrinter
 ```
 
@@ -81,7 +81,7 @@ Alternatively, join the [Discord group][Discord] and send a message there.
 License
 -------
 
-Copyright (c) 2021 ZwerOxotnik <zweroxotnik@gmail.com>
+Copyright (c) 2021, 2024 ZwerOxotnik <zweroxotnik@gmail.com>
 
 Licensed under the [MIT licence](https://tldrlegal.com/license/mit-license).
 
